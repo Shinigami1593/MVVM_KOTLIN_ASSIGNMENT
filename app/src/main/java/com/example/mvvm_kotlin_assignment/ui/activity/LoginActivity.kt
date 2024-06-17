@@ -32,24 +32,24 @@ class LoginActivity : AppCompatActivity() {
 //        auth = ViewModelProvider(this).get(AuthViewModel::class.java)
 
         loginActivity.Login.setOnClickListener{
-            val username = loginActivity.username.text.toString().trim()
-            val password = loginActivity.password.text.toString().trim()
+            val username = loginActivity.username.text.toString()
+            val password = loginActivity.password.text.toString()
 
             Log.d("LoginActivity", "Login button clicked: username=$username, password=$password")
             auth.login(username, password) { success, message ->
                 if (success) {
                     navigateToDashboard()
                 } else {
-                    Log.e("LoginActivity", "Login failed: $message")
+//                    Log.e("LoginActivity", "Login failed: $message")
                     Toast.makeText(this,"couldn't find user",Toast.LENGTH_LONG).show()
                 }
             }
         }
 
         loginActivity.reg.setOnClickListener{
-            val username = loginActivity.username.text.toString().trim()
-            val password = loginActivity.reg.text.toString().trim()
-            var data = AuthModel(username, password)
+            val username = loginActivity.username.text.toString()
+            val password = loginActivity.reg.text.toString()
+//            var data = AuthModel(username, password)
 
             Log.d("LoginActivity", "Signup text clicked: username=$username, password=$password")
             auth.register(username,password) { success, message ->

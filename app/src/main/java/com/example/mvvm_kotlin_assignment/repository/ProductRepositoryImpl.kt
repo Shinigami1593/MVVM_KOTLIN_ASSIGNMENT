@@ -12,7 +12,7 @@ import com.google.firebase.storage.StorageReference
 
 class ProductRepositoryImpl:ProductRepository {
     var database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    var ref : DatabaseReference = database.reference.child("products")
+    var ref : DatabaseReference = database.reference.child("cards")
     var firebaseStorage: FirebaseStorage = FirebaseStorage.getInstance()
     var storageRef : StorageReference = firebaseStorage.reference
 
