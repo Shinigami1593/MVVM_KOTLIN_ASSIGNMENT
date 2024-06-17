@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import com.example.mvvm_kotlin_assignment.repository.AuthRepository
 
 class AuthViewModel(val repository: AuthRepository):ViewModel() {
-    fun login(email: String, password: String): LiveData<Boolean> {
-        return repository.login(email, password)
+    fun login(username: String, password: String, callback: (Boolean, String?) -> Unit) {
+        return repository.login(username, password,callback)
     }
 
-    fun register(email: String, password: String): LiveData<Boolean> {
-        return repository.register(email, password)
+    fun register(username: String, password: String, callback: (Boolean, String?) -> Unit) {
+        return repository.register(username, password,callback)
     }
 }

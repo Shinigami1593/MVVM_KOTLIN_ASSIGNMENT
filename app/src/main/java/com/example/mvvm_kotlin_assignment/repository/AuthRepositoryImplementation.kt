@@ -6,25 +6,30 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class AuthRepositoryImplementation:AuthRepository{
-//    var database:FirebaseDatabase = FirebaseDatabase.getInstance()
+    var database:FirebaseDatabase = FirebaseDatabase.getInstance()
+    var ref = database.reference.child("user")
     var auth:FirebaseAuth = FirebaseAuth.getInstance()
 
-    override fun login(email: String, password: String): LiveData<Boolean> {
-        val registerResult = MutableLiveData<Boolean>()
-        auth.createUserWithEmailAndPassword(email, password)
+    override fun login(username: String, password: String, callback: (Boolean, String?) -> Unit) {
+        auth.signInWithEmailAndPassword(username, password)
             .addOnCompleteListener { task ->
-                registerResult.value = task.isSuccessful
+                if (task.isSuccessful) {
+                    callback(true, null)
+                } else {
+                    callback(false, task.exception?.message)
+                }
             }
-        return registerResult
     }
 
-    override fun register(email: String, password: String): LiveData<Boolean> {
-        val registerResult = MutableLiveData<Boolean>()
-        auth.createUserWithEmailAndPassword(email, password)
+    override fun register(username: String, password: String, callback: (Boolean, String?) -> Unit) {
+        auth.createUserWithEmailAndPassword(username, password)
             .addOnCompleteListener { task ->
-                registerResult.value = task.isSuccessful
+                if (task.isSuccessful) {
+                    callback(true, null)
+                } else {
+                    callback(false, task.exception?.message)
+                }
             }
-        return registerResult
     }
 
 }
