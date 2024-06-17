@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mvvm_kotlin_assignment.R
 import com.example.mvvm_kotlin_assignment.databinding.ActivityLoginBinding
+import com.example.mvvm_kotlin_assignment.model.AuthModel
 import com.example.mvvm_kotlin_assignment.repository.AuthRepositoryImplementation
 import com.example.mvvm_kotlin_assignment.viewmodel.AuthViewModel
 
@@ -25,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(loginActivity.root)
 
         val repo = AuthRepositoryImplementation()
-        val userViewModel = AuthViewModel(repo)
+        auth = AuthViewModel(repo)
 
 
 //        auth = ViewModelProvider(this).get(AuthViewModel::class.java)
@@ -35,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             val password = loginActivity.password.text.toString().trim()
 
             Log.d("LoginActivity", "Login button clicked: username=$username, password=$password")
-            userViewModel.login(username, password) { success, message ->
+            auth.login(username, password) { success, message ->
                 if (success) {
                     navigateToDashboard()
                 } else {
@@ -46,16 +47,31 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginActivity.reg.setOnClickListener{
-            var intent = Intent(this@LoginActivity,RegistrationActivity::class.java)
-            startActivity(intent)
+            val username = loginActivity.username.text.toString().trim()
+            val password = loginActivity.reg.text.toString().trim()
+            var data = AuthModel(username, password)
+
+            Log.d("LoginActivity", "Signup text clicked: username=$username, password=$password")
+            auth.register(username,password) { success, message ->
+                if (success) {
+                    Toast.makeText(this,"Sucessfully Signed up",Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(this,"Unsuccessful signing up",Toast.LENGTH_LONG).show()
+
+                    // Show error message to the user
+                }
+            }
         }
-
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+    fun navigateToDashboard(){
+        var intent = Intent(this@LoginActivity,DashBoardActivity::class.java)
+        startActivity(intent)
     }
 }
