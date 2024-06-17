@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvm_kotlin_assignment.R
 import com.example.mvvm_kotlin_assignment.model.ProductModel
 import com.example.mvvm_kotlin_assignment.ui.activity.UpdateActivity
-import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class ProductAdapter(var context: Context, var data:ArrayList<ProductModel>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
