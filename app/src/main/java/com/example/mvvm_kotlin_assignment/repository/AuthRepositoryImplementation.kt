@@ -19,7 +19,7 @@ class AuthRepositoryImplementation:AuthRepository{
     }
 
     override fun register(email: String, password: String): LiveData<Boolean> {
-        Tval registerResult = MutableLiveData<Boolean>()
+        val registerResult = MutableLiveData<Boolean>()
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 registerResult.value = task.isSuccessful
