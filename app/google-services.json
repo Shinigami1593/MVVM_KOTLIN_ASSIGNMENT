@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "538693926406",
+    "firebase_url": "https://mvvm-assignment-default-rtdb.firebaseio.com",
+    "project_id": "mvvm-assignment",
+    "storage_bucket": "mvvm-assignment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538693926406:android:939e3e50f0eb6447d40d87",
+        "android_client_info": {
+          "package_name": "com.example.mvvm_kotlin_assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-HIrQbazUezx1nJIhdd7AsHE0pKZzyOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
